@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if tasks %}
+
+{{ tasks }}
+
+{% else %}
+
+<p>There is no tasks right now!</p>
+
+{% endif %}
+
+
+{% endblock content %}

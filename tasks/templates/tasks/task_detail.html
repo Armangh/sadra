@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ task.title }}</h1>
+
+<p>{{ task.description }}</p>
+
+{% for employee in task.employee.all %}
+<h4><a href={% url 'tasks:employee_task_detail' employee.id %}>{{ employee.user.username }}</a></h4>
+{% endfor %}
+
+{% endblock content %}

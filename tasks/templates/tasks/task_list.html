@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Tasks</th>
+      <th scope="col">User</th>
+    </tr>
+</thead> <tbody>
+      {% for task in object_list %}
+        <tr>
+            <td><a href={% url 'tasks:task_detail' task.id %}>{{ task.title }}</a></td>
+            <td>
+            {% for employee in task.employee.all %}
+              <a href="{% url 'tasks:employee_task_detail' employee.id %}">{{ employee.user.username }}</a>
+            {% endfor %}
+            </td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}
