@@ -9,4 +9,22 @@
 <h4><a href={% url 'tasks:employee_task_detail' employee.id %}>{{ employee.user.username }}</a></h4>
 {% endfor %}
 
+{% for replay in replaies %}
+
+    <div class="replay">
+    <p>{{ replay.text}}</p>
+    <small> {{ replay.user.username}} </small>
+    </div>
+    <hr>
+
+{% endfor %}
+
+<form action="{% url 'tasks:submit_replay' %}" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="hidden" name="task" value="{{ task.id }}">
+<hr>
+<button type="submit">Send</button>
+
+</form>
 {% endblock content %}
