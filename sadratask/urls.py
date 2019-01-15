@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from tasks.views import UserTaskView, logout_view
+from tasks.views import UserTaskView, logout_view, InboxView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tasks/', include('tasks.urls', namespace='tasks')),
     path('users/', include('django.contrib.auth.urls')),
     path('profile/', UserTaskView.as_view(), name='profile'),
+    path('inbox/', InboxView.as_view(), name='inbox'),
 ]

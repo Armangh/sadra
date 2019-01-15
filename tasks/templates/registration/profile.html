@@ -3,8 +3,20 @@
 {% block content %}
 {% if tasks %}
 
-{{ tasks }}
-
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Tasks of {{ request.user }}</th>
+    </tr>
+</thead> <tbody>
+      {% for task in tasks %}
+        <tr>
+            <td><a href={% url 'tasks:task_detail' task.id %}>{{ task.title }}</a></td>
+            <td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% else %}
 
 <p>There is no tasks right now!</p>

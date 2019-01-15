@@ -6,15 +6,19 @@
     <tr>
       <th scope="col">Tasks</th>
       <th scope="col">User</th>
+      <th scope="col">Sender</th>
     </tr>
 </thead> <tbody>
       {% for task in object_list %}
         <tr>
             <td><a href={% url 'tasks:task_detail' task.id %}>{{ task.title }}</a></td>
             <td>
-            {% for employee in task.employee.all %}
-              <a href="{% url 'tasks:employee_task_detail' employee.id %}">{{ employee.user.username }}</a>
+            {% for employee in task.assigners.all %}
+              <a href="{% url 'tasks:employee_task_detail' employee.id %}">{{ employee.username }}</a>
             {% endfor %}
+            </td>
+            <td>
+              <a href="{% url 'tasks:employee_task_detail' task.sender.id %}">{{ task.sender.username }}</a>
             </td>
         </tr>
     {% endfor %}

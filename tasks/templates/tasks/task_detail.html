@@ -1,17 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h5>Sender: {{ task.sender }}</h5>
 <h1>{{ task.title }}</h1>
 
 <p>{{ task.description }}</p>
 
-{% for employee in task.employee.all %}
-<h4><a href={% url 'tasks:employee_task_detail' employee.id %}>{{ employee.user.username }}</a></h4>
+{% for employee in task.assigners.all %}
+<h4><a href={% url 'tasks:employee_task_detail' employee.id %}>{{ employee.username }}</a></h4>
 {% endfor %}
 
 {% for replay in replaies %}
 
-    <div class="replay">
+    <div class="replay" id="{{ replay.id }}">
+    <a href="#{{replay.id}}">#{{ replay.id }}</a>
     <p>{{ replay.text}}</p>
     <small> {{ replay.user.username}} </small>
     </div>

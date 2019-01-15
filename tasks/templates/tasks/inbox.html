@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if notifications %}
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Tasks</th>
+      <th scope="col">Type</th>
+      <th scope="col">Seen</th>
+    </tr>
+</thead> <tbody>
+    {% for notification in notifications %}
+        <tr>
+            <td><a href="{% url 'tasks:task_detail' notification.task.id %}#{{ notification.replay.id }}">{{ notification.task.title }}</a></td>
+            <td>{{ notification.verb }}</td>
+            <td>{{ notification.seen }}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+
+<p>No Notification for you!</p>
+
+{% endif %}
+
+
+{% endblock content %}
